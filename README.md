@@ -12,3 +12,9 @@ docker-compose up
 The app will now be running and accessible via http://localhost:3000/
 
 ---
+
+## Webpacker::Manifest::MissingEntryError in Videos#index Error
+try running:
+```bash
+docker-compose run web bundle exec rake webpacker:install
+```
