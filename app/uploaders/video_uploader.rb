@@ -20,8 +20,8 @@ class VideoUploader < Shrine
     end
 
     def generate_hls_playlist(movie, path, uuid, width, bitrate, master_playlist)
-        ffmpeg_options = {validate: false, custom: %W(-profile:v baseline -level 3.0 -vf scale=#{width}:-2 -b:v #{bitrate} -start_number 0 -hls_time 2 -hls_list_size 0 -f hls) }
-        transcoded_movie = movie.transcode(File.join("#{path}", "#{uuid}-w#{width}-#{bitrate}.m3u8"), ffmpeg_options)
+        ffmpeg_options = {validate: true, custom: %W(-profile:v baseline -level 3.0 -vf scale=#{width}:-2 -b:v #{bitrate} -start_number 0 -hls_time 2 -hls_list_size 0 -f hls) }
+        transcoded_movie = movie.transcode(File.join("#{path}", "#{uuid}-w#{width}-#{bitrate}.m3u8"), {}, ffmpeg_options)
         
         bandwidth = 0
         avg_bandwidth = 0
